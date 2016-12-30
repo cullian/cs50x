@@ -1,0 +1,45 @@
+0.  BMP: 64 bit color, 18446744073709551616 colors
+    GIF: 8 bits, 256 colors.
+    JPEG: 24 bit, 16777216 colors.
+    PNG: 48 bit, 281474976710656 colors.
+1.  GIF and APNG
+2.  Lossy, looses some data and cannot be restored to its orinial complete form.  Lossless can be restored to its original form.
+3.  JPEG and GIF, PNG is designed as lossless, but some are of the opinion that it is lossy
+4.  "When the operating system erases a FAT file, two
+things occur. First, the system modifies the filename’s first
+character in the file’s directory entry to signal that the file
+has been deleted and that the directory entry can be recycled.
+Second, the system moves all of the file’s FAT clusters
+to the hard drive’s list of free clusters. The actual file
+data is never touched. Indeed, there are many programs
+available that can recover erased files." 
+
+--Remembrance of Data Passed:
+A Study of Disk Sanitization
+Practices
+SIMSON L.
+GARFINKEL
+AND ABHI
+SHELAT
+Massachusetts
+Institute of
+Technology
+5.  Smash the hard drive with a hammer then burn it with an acetylene torch on top of a powerful electromagnet. 
+6.  stdint.h is a header file in the C standard library that allows programmers to write more portable code by 
+providing a set of typedefs that specify exact-width integer types.
+7.  To create variables of a specific length.  In the case of this program, these are used in structs that have 
+been packed.  These structs are used to read/write data from a bmp file.
+8.  BYTE 1
+    DWORD 4
+    LONG 4
+    WORD 2
+9.  0x424d according to dump and web or 4d42 according to peek and check in copy.c
+10. bfsize is the size, in bytes, of the bitmap file.  bisize is the size of the structure.
+11. The bitmap is a top-down DIB and its origin is the upper-left corner.
+12. biBitCount
+13. No disk space or no permission
+14. Because we only want to read one element at a time.
+15. 3
+16. The  fseek()  function  sets  the  file  position indicator for the stream.
+17. SEEK_CUR is the current position indicator.
+18. Rick Astley
