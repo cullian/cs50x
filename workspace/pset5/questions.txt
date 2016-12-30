@@ -1,0 +1,34 @@
+0.  Pneumonoultramicroscopicsilicovolcanoconiosis is an artificial long word
+    said to mean a lung disease caused by inhaling very fine ash and sand dust.
+1.  returns resource usage measures for who
+2.  16
+3.  because they are large structures and it takes time and memory to copy them.
+4.  After opening the file and checking for errors.  Main goes thru the file one
+    char at a time until it hits EOF. For each character it checks if it is alpha
+    or an apostrophe.  If it is, it adds it to the word array and advances the index.
+    If the index becomes too long it throws away the word and reads to the next non-alpha 
+    or EOF.  If the char was a number, it throws away the current word and reads to the
+    next white space of EOF.  I wonder if these reads to EOF will cause an error when
+    fgetc tries to read past EOF in the for loop?  If the char is whitespace and the
+    index is > 0, then it has a word++ and it checks it against the dictionary for
+    mispelling++.  Then it prints it if it is mispelled.
+5.  It would read in numbers as a string.  It might read in words that are too long, as well.
+6.  To protect word and dictionary from being altered by the functions.
+7.  I used a trie data structure with a hash macro to hash each letter into a 0 - 26 range.
+    I figured a trie would be quicker for larger dictionaries and it is apearent when
+    compared to staff lookup, i beat it on lookup enough to overcome its lag on loading.
+    Each node has 27 children and an is_word indicator.  To try to speed up the load up, I 
+    counted the number of nodes neccessary for the dictionary and calloc a whole block
+    at once. This makes freeing the memory fast.  There are 367082 nodes in a 1439228 byte
+    dictionary.  This is approx 3.9 bytes per node, so I just allocate fsize / 3 nodes on 
+    the heap.  I feel this is suffidient for most dictionaries.  Unfortunately I had to 
+    ditch a beautiful ercursive function I had to clean up the nodes.  But, now I can free
+    the whole block in one command.  It is a little sloppy with the extra nodes, but I figure
+    hash tables are sloppy too.
+8.  My code was slower, I was scanning each word, then iterating thru each char on load.  Also
+    I was callocing each new node.  I improved it by callocing a whole block ahead of time.  Then
+    I read each char from the file and put them straight in to the trie.
+9.  I used calloc instead of malloc to make sure the structures were initialized to all 0's. I think
+    I have mentioned the other improvements in 7 and 8.
+10. The loading was a bottleneck, but I chipped it a little.  I don't think a hash table can beat this 
+    lookup speed.  I trie wins on lookup speed, but uses a lot of memory.  It is a trade off.
